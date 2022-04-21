@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: project95-dep
+  name: project95
   labels:
-    app: project95-dep
+    app: project95
 spec:
   selector:
       matchLabels:
-        app: project95-dep
+        app: project95
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: project95-dep
+        app: project95
     spec:
       containers:
         - name: project95
@@ -132,12 +132,11 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: test-ratelimit
+  name: ratelimiter
 spec:
-  plugin:
-    rateLimit:
-      average: 1
-      burst: 5
+  rateLimit:
+    average: 1
+    burst: 5
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -147,11 +146,11 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`my.laptop`) && PathPrefix(`/`)
+    - match: PathPrefix(`/rest`)
       kind: Rule
       services:
         - kind: Service
           name: project95
           port: 8080
       middlewares:
-        - name: test-ratelimit
+        - name: ratelimiter

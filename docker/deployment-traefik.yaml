@@ -140,7 +140,7 @@ spec:
     - host: my.laptop
       http:
         paths:
-          - path: /
+          - path: /rest
             pathType: Prefix
             backend:
               service:

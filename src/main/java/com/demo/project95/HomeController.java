@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("/rest/")
 public class HomeController {
 
     @Autowired
