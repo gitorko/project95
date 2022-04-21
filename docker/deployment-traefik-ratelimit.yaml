@@ -135,7 +135,7 @@ metadata:
   name: ratelimiter
 spec:
   rateLimit:
-    average: 1
+    average: 3
     burst: 5
 ---
 apiVersion: traefik.containo.us/v1alpha1
@@ -146,7 +146,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: PathPrefix(`/rest`)
+    - match: Host(`my.laptop`) && PathPrefix(`/rest`)
       kind: Rule
       services:
         - kind: Service
