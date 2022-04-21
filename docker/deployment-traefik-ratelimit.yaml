@@ -147,7 +147,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`my.laptop`) && PathPrefix(`/api`)
+    - match: Host(`my.laptop`) && PathPrefix(`/`)
       kind: Rule
       services:
         - kind: Service
