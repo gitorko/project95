@@ -3,7 +3,7 @@
 
 ## Setup
 
-Add the entry '127.0.0.1 my.laptop' to /etc/hosts
+Add the entry '127.0.0.1 localhost.com' to /etc/hosts
 
 ### Build
 
@@ -36,7 +36,7 @@ kubectl describe ingressroute
 http://127.0.0.1:9000/dashboard/
 
 ```bash
-curl --request GET 'http://my.laptop/api/time'
+curl --request GET 'http://localhost.com/api/time'
 ```
 
 ### Postgres DB
