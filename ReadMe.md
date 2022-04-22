@@ -10,6 +10,9 @@ Add the entry '127.0.0.1 localhost.com' to /etc/hosts
 Build the project and docker image
 
 ```bash
+docker --version
+Docker version 20.10.10, build b485636
+
 cd project95
 ./gradlew bootRun
 ./gradlew clean build
@@ -21,13 +24,11 @@ docker build -f docker/Dockerfile --force-rm -t project95:1.0.0 .
 Deploy traefik and deploy the service
 
 ```bash
-
 helm install traefik traefik/traefik
-kubectl apply -f dashboard.yaml
 kubectl port-forward $(kubectl get pods --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
 
+kubectl apply -f docker/deployment.yaml
 kubectl apply -f docker/deployment-traefik.yaml
-
 kubectl apply -f docker/deployment-traefik-ratelimit.yaml
 
 kubectl describe ingressroute 
@@ -58,5 +59,4 @@ Tag the image
 docker tag project95:1.0.0 gitorko/project95:1.0.0
 docker push gitorko/project95:1.0.0
 docker-compose -f docker/docker-compose.yml up 
-
 ```

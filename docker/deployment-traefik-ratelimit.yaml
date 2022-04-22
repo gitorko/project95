@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: project95
-          image: project95:1.0.0
+          image: gitorko/project95:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

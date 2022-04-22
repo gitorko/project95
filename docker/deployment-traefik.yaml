@@ -20,8 +20,8 @@ spec:
         app: project95
     spec:
       containers:
-        - name: gitorko/project95
-          image: project95:1.0.0
+        - name: project95
+          image: gitorko/project95:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -137,7 +137,7 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-    - host: my.laptop
+    - host: localhost.com
       http:
         paths:
           - path: /rest
